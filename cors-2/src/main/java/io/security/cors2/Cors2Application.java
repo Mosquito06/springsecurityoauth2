@@ -1,12 +1,13 @@
-package io.security.oauth2.springsecurityoauth2;
+package io.security.cors2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Springsecurityoauth2Application
-{
+public class Cors2Application {
+
     public static void main(String[] args) {
-        SpringApplication.run(Springsecurityoauth2Application.class, args);
+        SpringApplication.run(Cors2Application.class, args);
     }
+
 }
