@@ -8,11 +8,11 @@ server:
 #      client:
 #        registration:
 #          google :
-#            client-id: oauth2-client-app
-#            client-secret: eZTvMeU5w0WnFIP4h1pZHcE8po0Gr46Z
+#            client-id:
+#            client-secret:
 #          keycloak :
-#            client-id: oauth2-client-app
-#            client-secret: eZTvMeU5w0WnFIP4h1pZHcE8po0Gr46Z
+#            client-id:
+#            client-secret:
 #            client-name: oauth2-client-app
 #            redirect-uri: http://localhost:8081/login/oauth2/code/keycloak
 #            authorization-grant-type: authorization_code
