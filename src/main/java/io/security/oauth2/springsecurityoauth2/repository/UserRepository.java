@@ -13,7 +13,7 @@ public class UserRepository
 
     public User findByUsername(String username)
     {
-        if( users.containsKey("username") )
+        if( users.containsKey(username) )
         {
             return (User) users.get(username);
         }

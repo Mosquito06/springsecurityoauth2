@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @Controller
-public class IndexController {
-
+public class IndexController
+{
     @GetMapping("/")
     public String index(Model model, Authentication authentication,  @AuthenticationPrincipal OAuth2User oAuth2User)
     {
