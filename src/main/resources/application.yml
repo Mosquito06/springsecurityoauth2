@@ -26,4 +26,10 @@ server:
 #            user-info-uri: http://localhost:8080/realms/oauth2/protocol/openid-connect/userinfo
 #            jwk-set-uri: http://localhost:8080/realms/oauth2/protocol/openid-connect/certs
 #            user-name-attribute: preferred_username
-
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          #jws-algorithms: HS256
+          jws-algorithms: RHS256
