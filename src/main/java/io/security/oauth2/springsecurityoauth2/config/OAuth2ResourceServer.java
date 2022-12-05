@@ -9,6 +9,7 @@ import io.security.oauth2.springsecurityoauth2.filter.authentication.JwtAuthenti
 import io.security.oauth2.springsecurityoauth2.filter.authorization.JwtAuthorizationFilter;
 import io.security.oauth2.springsecurityoauth2.filter.authorization.JwtAuthorizationMacFilter;
 import io.security.oauth2.springsecurityoauth2.filter.authorization.JwtAuthorizationRsaFilter;
+import io.security.oauth2.springsecurityoauth2.filter.authorization.JwtAuthorizationRsaPublicKeyFilter;
 import io.security.oauth2.springsecurityoauth2.signature.MacSecuritySigner;
 import io.security.oauth2.springsecurityoauth2.signature.RsaSecuritySigner;
 import io.security.oauth2.springsecurityoauth2.signature.SecuritySigner;
@@ -28,6 +29,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -46,17 +48,24 @@ public class OAuth2ResourceServer
         http.userDetailsService(userDetailsService());
         //http.addFilterBefore(jwtAuthenticationFilter(macSecuritySigner, octetSequenceKey), UsernamePasswordAuthenticationFilter.class);
         // http.addFilterBefore(new JwtAuthorizationMacFilter(octetSequenceKey), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterBefore(jwtAuthenticationFilter(null, null), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterBefore(jwtAuthenticationFilter(null, null), UsernamePasswordAuthenticationFilter.class);
         //http.addFilterBefore(jwtAuthorizationRsaFilter(null), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterBefore(jwtAuthorizationRsaPublicKeyFilter(null), UsernamePasswordAuthenticationFilter.class);
         http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         return http.build();
     }
 
     @Bean
-    public JwtAuthorizationRsaFilter jwtAuthorizationRsaFilter(RSAKey rsaKey) throws JOSEException
+    public JwtAuthorizationRsaPublicKeyFilter jwtAuthorizationRsaPublicKeyFilter(JwtDecoder jwtDecoder) throws JOSEException
     {
-        return new JwtAuthorizationRsaFilter(new RSASSAVerifier( rsaKey.toRSAPublicKey() ));
+        return new JwtAuthorizationRsaPublicKeyFilter( jwtDecoder );
     }
+
+//    @Bean
+//    public JwtAuthorizationRsaFilter jwtAuthorizationRsaFilter(RSAKey rsaKey) throws JOSEException
+//    {
+//        return new JwtAuthorizationRsaFilter(new RSASSAVerifier( rsaKey.toRSAPublicKey() ));
+//    }
 
 //    @Bean
 //    public JwtAuthorizationMacFilter jwtAuthorizationMacFilter(OctetSequenceKey octetSequenceKey) throws JOSEException
