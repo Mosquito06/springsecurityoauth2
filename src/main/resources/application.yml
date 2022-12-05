@@ -32,4 +32,4 @@ spring:
       resourceserver:
         jwt:
           #jws-algorithms: HS256
-          jws-algorithms: RHS256
+          jws-algorithms: RS512

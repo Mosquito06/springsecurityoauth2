@@ -39,7 +39,7 @@ public class SignatureConfig
     @Bean
     public RSAKey rsaKey() throws JOSEException
     {
-        RSAKey rsaKey = new RSAKeyGenerator(2048).keyID("rsaKey").algorithm(JWSAlgorithm.RS256).generate();
+        RSAKey rsaKey = new RSAKeyGenerator(2048).keyID("rsaKey").algorithm(JWSAlgorithm.RS512).generate();
 
         return rsaKey;
     }
