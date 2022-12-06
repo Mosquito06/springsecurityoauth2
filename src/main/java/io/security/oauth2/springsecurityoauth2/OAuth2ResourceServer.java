@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.servlet.Filter;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class OAuth2ResourceServer
 {
     @Bean
@@ -25,19 +24,9 @@ public class OAuth2ResourceServer
                                     .antMatchers(HttpMethod.GET,"/photos/3").hasAuthority("ROLE_default-roles-oauth2")
                                     .anyRequest().authenticated());
 
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter( new CustomRoleConvert() );
 
-        http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter);
 
-        return http.build();
-    }
-
-    @Bean
-    SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception
-    {
-        http.antMatcher("/photos/2").authorizeRequests( requests -> requests.antMatchers(HttpMethod.GET,"/photos/2").permitAll().anyRequest().authenticated());
-        http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+//        http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter);
 
         return http.build();
     }
