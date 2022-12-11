@@ -15,7 +15,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class OAuth2ResourceServer {
 
     @Bean
-    SecurityFilterChain securityFilterChain1(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain1(HttpSecurity http) throws Exception
+    {
 
         http.authorizeRequests(
                 (requests) -> requests
@@ -28,7 +29,8 @@ public class OAuth2ResourceServer {
 
     @Bean
 
-    public CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource()
+    {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("*");
         configuration.addAllowedMethod("*");
